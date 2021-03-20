@@ -19,6 +19,7 @@ import Home from './screens/Home';
 import About from './screens/headerItems/About';
 import Contact from './screens/headerItems/Contact';
 import Places from './screens/headerItems/Places';
+import Place from '../src/screens/headerItems/Place';
 import Services from './screens/headerItems/Services';
 import Events from './screens/headerItems/Events';
 import DashboardAdmin from './screens/Dashboard/Admin/DashboardAdmin';
@@ -102,6 +103,7 @@ ReactDOM.render(
       <Route path='/about' exact render={props => <About {...props}  />} />
       <Route path='/contact' exact render={props => <Contact {...props}  />} />
       <Route path='/places' exact render={props => <Places {...props}  />} />
+      <Route path="/place/:id" exact render={props => <Place {...props}  />}/>
       <Route path='/services' exact render={props => <Services {...props}  />} />
       <Route path='/events' exact render={props => <Events {...props}  />} />
       <OwnerRoute path='/owner' component={DashOwner}  /> 
