@@ -3851,7 +3851,7 @@ body {
 }
 .page_content {
   background: #000;
-  padding-bottom: 85px;
+  padding-bottom: 45px;
 }
 .page_content.left-sidebar .main {
   float: right;
@@ -4968,7 +4968,7 @@ body {
   background: #000;
 }
 .single-page {
-  padding-top: 420px;
+  padding-top: 20px;
 }
 .single-page.tour-single {
   padding-bottom: 0;
@@ -7853,7 +7853,7 @@ body {
   }
 }
 .about-page {
-  padding-top: 220px;
+  padding-top: 0px;
 }
 .about-page .main {
   max-width: 100%;

@@ -32,20 +32,41 @@ exports.registerController = (req, res) => {
         });
       }
     });
+    const user = new User({
+      name,
+      email,
+      password
+    });
+    user.save((err, user) => {
+      if (err) {
+        console.log('Save error', errorHandler(err));
+        return res.status(401).json({
+          errors: errorHandler(err)
+        });
+      } else {
+        return res.json({
+          success: true,
+          message: user,
+          message: 'Signup success'
+        });
+      }
+    });
 
-    const token = jwt.sign(
+    
+    /*const token = jwt.sign(
       {
         name,
         email,
         password
       },
-      process.env.JWT_ACCOUNT_ACTIVATION,
+      process.env.JWT_SECRET,
       {
         expiresIn: '5m'
       }
-    );
+    );*/
+   
 
-    const emailData = {
+ /*   const emailData = {
       from: process.env.EMAIL_FROM,
       to: email,
       subject: 'Account activation link',
@@ -70,7 +91,7 @@ exports.registerController = (req, res) => {
           success: false,
           errors: errorHandler(err)
         });
-      });
+      });*/
   }
 };
 

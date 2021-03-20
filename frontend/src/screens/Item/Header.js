@@ -61,6 +61,7 @@ const Header=({history})=> {
 
 
 
+
     return (
       <div className="header">
         <div className="wrap">
@@ -160,7 +161,9 @@ const Header=({history})=> {
                       </li>
                       <li className="dropdown_li">
                
-                    <button
+                   {/**
+                    *  na7inehh nchoufoulou 7all m3a login 
+                    * <button
                   onClick={() => {
                     signout(() => {
                       toast.error('Signout Successfully');
@@ -172,7 +175,11 @@ const Header=({history})=> {
                   <i className='fas fa-sign-out-alt  w-6  -ml-2' />
                   <span className='ml-3'>Signout</span>
                 </button>
-                                                 <NavLink to="/login">  <span>Login</span></NavLink> 
+                    */} 
+                    {
+                      name ? (<NavLink to={`${role}/me`} >Profile</NavLink> ): (<NavLink to="/login">  <span>Login</span></NavLink>) 
+                    }
+                                                 
                         
                       {/*  {
                           user.name ?

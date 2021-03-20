@@ -9,6 +9,7 @@ import Private from './screens/Private';
 import Admin from './screens/Admin';
 import ForgetPassword from './screens/ForgetPassword';
 import ResetPassword from './screens/ResetPassword';
+import "./i18nextConf"
 
 import PrivateRoute from './Routes/PrivateRoute';
 import AdminRoute from './Routes/AdminRoute';
@@ -108,7 +109,7 @@ ReactDOM.render(
 
       <Route path='/users/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
       <Route path='/users/activate/:token' exact render={props => <Activate {...props} />} />
-      <PrivateRoute path="/myspace" component={DashUser} />
+      <PrivateRoute path="/subscriber" component={DashUser} />
        <AdminRoute path="/admin"  component={DashAdmin} />
       <Redirect to='/' />
     </Switch>

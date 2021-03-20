@@ -3,16 +3,15 @@ import React, { Component } from 'react'
 export default class Search extends Component {
     render() {
         return (
-            <div className="search_tour">
+            <div style={{paddingTop:"10rem"}}>
+                <div className="search_tour">
             <div className="wrap">
                 <div className="wrap_float">
                     <div className="search_tour_form">
                         <h2 className="section_subtitle">
-                            SEARCH TOUR
+                        CUSTOMIZE YOUR TOUR
                         </h2>
-                        <p className="section_title">
-                            Ready to rest? We are ready to help with the search
-                        </p>
+                       
                         <div className="fields__block">
                             <div className="fields">
                                 <div className="field">
@@ -82,6 +81,9 @@ export default class Search extends Component {
                 </div>
             </div>
         </div>
-        )
+
+
+            </div>
+                    )
     }
 }

@@ -1,4 +1,6 @@
-const Articles=()=>{
+import { NavLink } from "react-router-dom";
+
+const Places=()=>{
     const style2 = {
         backgroundImage: "url('img/zagh/0.jpg')",
       };
@@ -7,11 +9,9 @@ const Articles=()=>{
            <div class="wrap">
                <div class="wrap_float">
                    <div class="top_part">
-                       <div class="section_subtitle">
-                           BLOG
-                       </div>
+                      
                        <h2 class="section_title">
-                           Travel articles
+                           Travel Places
                        </h2>
                        <div class="section_description">
                            Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor
@@ -48,13 +48,13 @@ const Articles=()=>{
                        </a>
                    </div>
                    <div class="show-more">
-                       <a href="blog-list.html" class="btn">
-                           <span>View all articles</span>
-                       </a>
+                   <NavLink className="btn" to="/places"><span>View all </span></NavLink>
+
+                      
                    </div>
                </div>
            </div>
        </div>
     )
 }
-export default Articles;
+export default Places;
