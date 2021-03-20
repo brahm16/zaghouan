@@ -1,5 +1,4 @@
 import React, { useRef, useState, useCallback } from 'react'
-import ReactDOM from 'react-dom'
 import { useSpring, animated } from 'react-spring/hooks'
  function Affiche({ children, offset, pos, start, end }) {
     const [transform] = useState(() =>

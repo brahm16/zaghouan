@@ -10,6 +10,7 @@ import Footer from "./Footer";
 import About from "./About";
 import Products from "./Products";
 import Search from "./Search";
+import Services from './Services';
 
 function Affiche({ children, offset, pos, start, end }) {
   const [transform] = useState(() =>
@@ -32,7 +33,8 @@ function Landing() {
           <Header />
           <MainLanding  />
           <div  onScroll={onScroll}>
-            <About />
+          <Services />
+          <About />
 
           <Places />
           <Search />

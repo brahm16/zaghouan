@@ -125,7 +125,7 @@ class MainLanding extends Component {
                     </div>
                     <div className="_title">
                       <span>
-                        <NavLink to="execursions">{t("excursions")}</NavLink>
+                        <NavLink to="main/execursions">{t("excursions")}</NavLink>
                       </span>
                     </div>
                   </a>
@@ -141,7 +141,7 @@ class MainLanding extends Component {
                     </div>
                     <div className="_title">
                       <span>
-                        <NavLink to="events">{t("events")}</NavLink>
+                        <NavLink to="main/events">{t("events")}</NavLink>
                       </span>
                     </div>
                   </a>
@@ -157,7 +157,7 @@ class MainLanding extends Component {
                     </div>
                     <div className="_title">
                       <span>
-                        <NavLink to="stores">{t("online")}</NavLink>
+                        <NavLink to="main/stores">{t("online")}</NavLink>
                       </span>
                     </div>
                   </a>
@@ -173,7 +173,7 @@ class MainLanding extends Component {
                     </div>
                     <div className="_title">
                       <span>
-                        <NavLink to="gastronomy">{t("gastro")}</NavLink>
+                        <NavLink to="main/gastronomy">{t("gastro")}</NavLink>
                       </span>
                     </div>
                   </a>
