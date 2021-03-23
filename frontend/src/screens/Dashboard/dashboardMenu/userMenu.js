@@ -3,22 +3,22 @@ export const MENU_USER=[
     {
         id:1,
         title:"Home",
-        icon:""
+        icon:"fas fa-home"
     },
     {
         id:2,
         title:"Profile",
-        icon:""
+        icon:"fas fa-user-alt"
     },
     {
         id:3,
         title:"Orders",
-        icon:""
+        icon:"fas fa-shopping-cart"
     },
     {
         id:4,
         title:"Logout",
-        icon:""
+        icon:"fas fa-sign-out-alt"
     },
   
 

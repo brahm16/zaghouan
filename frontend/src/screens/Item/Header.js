@@ -3,6 +3,9 @@ import authSvg from '../../assests/update.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { updateUser, isAuth, getCookie, signout } from '../../helpers/auth';
+import styled from "styled-components";
+import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
 
 import { useHistory } from "react-router-dom";
 
@@ -11,9 +14,45 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withTranslation } from 'react-i18next';
 import LanguageSelect from "../LanguageSelect";
+import { Button } from 'reactstrap';
+const Main = styled("div")`
+  font-family: sans-serif;
+  height: 100vh;
+`;
 
+const DropDownContainer = styled("div")`
+  width: 10.5em;
+  margin: 0 auto;
+`;
+
+const DropDownHeader = styled("div")`
+  margin-bottom: 0.8em;
+  padding: 0.4em 2em 0.4em 1em;
+  color: white;
+`;
+
+const DropDownListContainer = styled("div")``;
+
+const DropDownList = styled("ul")`
+  padding: 0;
+  margin: 0;
+  padding-left: 1em;
+  background: #ffffff;
+  box-sizing: border-box;
+  color: #3faffa;
+  &:first-child {
+    padding-top: 0.8em;
+  }
+`;
+
+const ListItem = styled("li")`
+  list-style: none;
+  margin-bottom: 0.8em;
+`;
 
 const Header=({history})=> {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggling = () => setIsOpen(!isOpen);
 
 
   
@@ -91,47 +130,6 @@ const Header=({history})=> {
                   <span className="my-title">Zaghouan</span>
                 </NavLink>
               </div>
-              
-                  {
-                    /* 
-                    <Form onSubmit={this.handleLogin}>
-                    <FormGroup>
-                      <Label htmlFor="username">Username</Label>
-                      <Input
-                        type="text"
-                        id="username"
-                        name="username"
-                        innerRef={(input) => (this.username = input)}
-                      />
-                    </FormGroup>
-                    <FormGroup>
-                      <Label htmlFor="password">Password</Label>
-                      <Input
-                        type="password"
-                        id="password"
-                        name="password"
-                        innerRef={(input) => (this.password = input)}
-                      />
-                    </FormGroup>
-                    <FormGroup check>
-                      <Label check>
-                        <Input
-                          type="checkbox"
-                          name="remember"
-                          innerRef={(input) => (this.remember = input)}
-                        />
-                        Remember me
-                      </Label>
-                    </FormGroup>
-                    <Button type="submit" value="submit" color="primary">
-                      Login
-                    </Button>
-                  </Form>
-                    */
-                  }
-                  
-             
-
               <div className="menu" id="js-menu">
                 <div className="close"></div>
                 <div className="scroll">
@@ -139,45 +137,46 @@ const Header=({history})=> {
                   <div className="scroll_wrap">
                     <ul>
                       <li className="dropdown_li">
+                        <a href="#" class="active"> Home</a> 
                       </li>
                       <li className="dropdown_li">
-                        <NavLink to="/"> Home</NavLink> 
+                       <a href="#"> About</a>
                       </li>
                       <li className="dropdown_li">
-                       <NavLink to="/about"> About</NavLink>
+                        <a>Services</a>
                       </li>
                       <li className="dropdown_li">
-                        <NavLink to="/services">Services</NavLink>
+                       <a href="#">Places</a>
                       </li>
                       <li className="dropdown_li">
-                       <NavLink to="/places">Places</NavLink>
+                       <a href="#">Contact</a>
                       </li>
+                    
                       <li className="dropdown_li">
-                       <NavLink to="/contact">Contact</NavLink>
-                      </li>
-                      <li className="dropdown_li">
-                       
-                        
-                      </li>
-                      <li className="dropdown_li">
-               
-                   {/**
-                    *  na7inehh nchoufoulou 7all m3a login 
-                    * <button
-                  onClick={() => {
+              
+                    {
+                      name ? (
+                        <Main style={{marginTop:"1rem"}}>
+                        <DropDownContainer>
+                          <DropDownHeader onClick={toggling}> Hi {name}        {isOpen? (<ArrowDropUp style={{color:"white"}} fontSize="small" />): (<ArrowDropDown style={{color:"white"}} fontSize="small" />) }</DropDownHeader>
+                          {isOpen && (
+                            <DropDownListContainer>
+                              <DropDownList>
+                              {role==='subscriber'? (<ListItem><a>Orders</a></ListItem>):(<ListItem></ListItem>)}
+                                <ListItem><NavLink to={`${role}/me`} >Profile</NavLink></ListItem>
+                                <ListItem><a onClick={() => {
                     signout(() => {
                       toast.error('Signout Successfully');
                       his.push("/login")
                     });
-                  }}
-                  className='mt-5 tracking-wide font-semibold bg-pink-500 text-gray-100 w-full py-4 rounded-lg hover:bg-pink-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'
-                >
-                  <i className='fas fa-sign-out-alt  w-6  -ml-2' />
-                  <span className='ml-3'>Signout</span>
-                </button>
-                    */} 
-                    {
-                      name ? (<NavLink to={`${role}/me`} >Profile</NavLink> ): (<NavLink to="/login">  <span>Login</span></NavLink>) 
+                  }} >Logout</a></ListItem>
+                              </DropDownList>
+                            </DropDownListContainer>
+                          )}
+                        </DropDownContainer>
+                      </Main>
+                      
+                       ): (<NavLink to="/login">  <span>Login</span></NavLink>) 
                     }
                                                  
                         
@@ -202,8 +201,8 @@ const Header=({history})=> {
                       <a href="mailto:info@hellodigi.ru">info@hellodigi.ru</a>
                     </div>
                     <div className="socials">
-                      <div className="links">
-                        <a href="#" className="fb"></a>
+                      <div  className="links">
+                        <a href="#" style={{color:"white"}} ><i style={{color:"white"}} class="fab fa-facebook-f"></i></a>
                         <a href="#" className="instagram"></a>
                         <a href="#" className="pinterest"></a>
                         <a href="#" className="twitter"></a>
@@ -212,7 +211,8 @@ const Header=({history})=> {
                   </div>
                 </div>
               </div>
-              
+              <div class="search_link" id="search_link"></div>
+
               <div className="mobile_btn" id="mobile_btn">
                 <span></span>
                 <span></span>

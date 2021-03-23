@@ -1,10 +1,16 @@
 import { NavLink } from "react-router-dom";
+import { MotionAnimate } from 'react-motion-animate'
+import 'react-motion-animate/dist/index.css'
 
 const Places=()=>{
     const style2 = {
-        backgroundImage: "url('img/zagh/0.jpg')",
+        backgroundImage: "url('img/zagh/ay.jpg')",
       };
     return (
+        <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
         <div class="blog blog-section last-section" style={style2}>
            <div class="wrap">
                <div class="wrap_float">
@@ -28,7 +34,7 @@ const Places=()=>{
                            <h3 class="blog_item_title">
                                Pack wisely before traveling
                            </h3>
-                           <p class="blog_item_text">
+                           <p style={{color:"white",fontSize:"1.3rem"}}>
                                A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
                            </p>
                        </a>
@@ -42,7 +48,7 @@ const Places=()=>{
                            <h3 class="blog_item_title">
                                Pack wisely before traveling
                            </h3>
-                           <p class="blog_item_text">
+                           <p style={{color:"white",fontSize:"1.3rem"}}>
                                A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
                            </p>
                        </a>
@@ -54,7 +60,9 @@ const Places=()=>{
                    </div>
                </div>
            </div>
+
        </div>
+       </MotionAnimate>
     )
 }
 export default Places;

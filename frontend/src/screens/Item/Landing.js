@@ -11,37 +11,37 @@ import About from "./About";
 import Products from "./Products";
 import Search from "./Search";
 import Services from './Services';
+import { FadeTransform } from 'react-animation-components'
 
-function Affiche({ children, offset, pos, start, end }) {
-  const [transform] = useState(() =>
-  offset.interpolate({ range: [start, end], output: [100, 0], extrapolate: 'clamp' }).interpolate(s => `translate3d(${s}px,0,0)`),
-)
-const [opacity] = useState(() => offset.interpolate([start, end], [0, 1]))
-return <animated.div style={{ position: 'absolute', left: 0, top: `${pos * 100}vh`, transform, opacity }}>{children}</animated.div>
-}
+
 
 
 function Landing() {
   
   
-    const [{ scroll }, set] = useSpring(() => ({ scroll: 0 }))
-   const onScroll = useCallback(e => void set({ scroll: e.target.scrollTop / (window.innerHeight / 2) }), [])
+
 
    
     return (
       <>
+      <FadeTransform in transformProps={{
+                exitTransform: 'scale(1) translateY(-50%)'
+            }}>
           <Header />
           <MainLanding  />
-          <div  onScroll={onScroll}>
+          
+          </FadeTransform>
+       
           <Services />
+          
+
+         
           <About />
 
           <Places />
           <Search />
-          <Products />
           <Promotion />
-          </div>
-
+=
           <Footer />
           </>
     );

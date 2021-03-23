@@ -34,9 +34,9 @@ class  PlaceDetails extends Component {
                                </div>
                             </div>
                             <h1 class="title">
-                                America, San Francisco
+                                Temple des eaux
                             </h1>
-                            <div class="geo">America, San Francisco</div>
+                            <div class="geo">Zaghouan</div>
                         </div>
                         <div class="single-right controls">
                             <button class="btn getModal" data-href="#book-now"><span>Book now</span></button>

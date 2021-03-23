@@ -1,3 +1,5 @@
+import { MotionAnimate } from 'react-motion-animate'
+import 'react-motion-animate/dist/index.css'
 const Products = () => {
   return (
     <div class="benefits">

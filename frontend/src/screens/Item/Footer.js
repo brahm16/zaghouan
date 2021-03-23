@@ -2,18 +2,30 @@ import { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import { MotionAnimate } from 'react-motion-animate'
+import 'react-motion-animate/dist/index.css'
 import { connect } from "react-redux";
+
 
 class Footer extends Component {
   render() {
     return (
       <>
+              
         <div className="footer">
+        
           <div className="footer_top">
-            <div className="wrap">
+          <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[1, 1, 1, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
+        
               <div className="wrap_float">
+            <div className="wrap">
+            
+           
                 <div className="footer_head_mobile">
-                  <div className="logo">lavella</div>
+                  <div className="logo">Zaghouan</div>
                   <div className="text">
                     Far far away, behind the word mountains, far from the
                     countries Vokalia and Consonantia, there live the blind
@@ -46,13 +58,22 @@ class Footer extends Component {
                   <a href="#" className="a twitter"></a>
                 </div>
               </div>
+              
             </div>
+            </MotionAnimate>
+
+
           </div>
+
           <div className="footer_center">
             <div className="wrap">
               <div className="wrap_float">
                 <form class="w-full max-w-full">
                   <div class="flex flex-wrap -mx-3 mb-6">
+                  <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[1, 1, 1, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                       <label
                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -70,6 +91,11 @@ class Footer extends Component {
                         Please fill out this field.
                       </p>
                     </div>
+                    </MotionAnimate>
+                    <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[1, 1, 1, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                     <div class="w-full md:w-1/2 px-3">
                       <label
                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -84,7 +110,12 @@ class Footer extends Component {
                         placeholder="Doe"
                       />
                     </div>
+                    </MotionAnimate>
                   </div>
+                  <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[1, 1, 1, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                   <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
                       <label
@@ -103,6 +134,11 @@ class Footer extends Component {
                       </p>
                     </div>
                   </div>
+                  </MotionAnimate>
+                  <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[1, 1, 1, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                   <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
                       <label
@@ -121,6 +157,11 @@ class Footer extends Component {
                       </p>
                     </div>
                   </div>
+                  </MotionAnimate>
+                  <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[1, 1, 1, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                   <div class="md:flex md:items-center">
                     <div class="md:w-1/3">
                       <button
@@ -132,6 +173,7 @@ class Footer extends Component {
                     </div>
                     <div class="md:w-2/3"></div>
                   </div>
+                  </MotionAnimate>
                 </form>
                 <div className="contacts-page">
                   <div className="content-head">
@@ -176,7 +218,7 @@ class Footer extends Component {
           </div>
 
           <div className="footer_bottom">
-            Copyright 2020 <a href="#">hellodigi.ru</a> | All Right Reserved
+            Copyright 2020 <a href="#">zaghouan</a> | All Right Reserved
           </div>
         </div>
       </>

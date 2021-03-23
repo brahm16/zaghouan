@@ -20,7 +20,6 @@ import About from './screens/headerItems/About';
 import Contact from './screens/headerItems/Contact';
 import Places from './screens/headerItems/Places';
 import Place from '../src/screens/headerItems/Place';
-import Services from './screens/headerItems/Services';
 import DashboardAdmin from './screens/Dashboard/Admin/DashboardAdmin';
 import OwnerDashboard from './screens/Dashboard/Owner/OwnerDashboard';
 import OwnerRoute from './Routes/OwnerRoute';
@@ -40,6 +39,7 @@ import Footer from './screens/Item/Footer';
 import Gastro from './screens/mainItems/Gastro';
 import Excursions from './screens/mainItems/Excursions';
 import Store from './screens/mainItems/Store';
+import Services from './screens/headerItems/Services';
 const DashAdmin = ({match}) => {
   return(
   <div className="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
@@ -122,6 +122,7 @@ ReactDOM.render(
     <Switch>
       <Route path='/' exact render={props => <App {...props} />} />
       <Route path='/login' exact render={props => <Login {...props} />} />
+      <Route path='/services' exact render={props => <Services {...props} />} />
 
       <Route path='/register' exact render={props => <Register {...props} />} />
       <Route path='/users/password/forget' exact render={props => <ForgetPassword {...props} />} />
@@ -131,7 +132,6 @@ ReactDOM.render(
       <Route path='/contact' exact render={props => <Contact {...props}  />} />
       <Route path='/places' exact render={props => <Places {...props}  />} />
       <Route path="/place/:id" exact render={props => <Place {...props}  />}/>
-      <Route path='/services' exact render={props => <Services {...props}  />} />
       <OwnerRoute path='/owner' component={DashOwner}  /> 
       <Route path='/users/password/reset/:token' exact render={props => <ResetPassword {...props} />} />
       <Route path='/users/activate/:token' exact render={props => <Activate {...props} />} />

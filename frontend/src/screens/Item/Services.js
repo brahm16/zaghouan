@@ -1,22 +1,44 @@
 import { NavLink } from "react-router-dom";
+import { MotionAnimate } from 'react-motion-animate'
+import 'react-motion-animate/dist/index.css'
+
 
 const Services=()=>{
+ 
     const style2 = {
         backgroundImage: "url('img/slide4.jpg')",
       };
     return (
-        <div class="blog blog-section last-section" style={style2}>
+     
+
+                  <div class="blog blog-section last-section" style={style2}>
            <div class="wrap">
                <div class="wrap_float">
                    <div class="top_part">
+                   <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
+
                       
                        <h2 class="section_title">
                            Services
                        </h2>
-                       <div class="section_description">
-                           Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor
-                       </div>
+                       </MotionAnimate>
+
+                      
                    </div>
+                   <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
+
+                          <div>Define your own scroll opacity trigger positions and easing</div>
+                          </MotionAnimate>
+                          <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                    <div class="section_content">
                        <a href="blog-single.html" class="blog_item">
                            <div class="blog_item_img">
@@ -47,14 +69,24 @@ const Services=()=>{
                            </p>
                        </a>
                    </div>
+                   </MotionAnimate>
+                   <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
+
                    <div class="show-more">
                    <NavLink className="btn" to="/services"><span>View all </span></NavLink>
 
                       
                    </div>
+                   </MotionAnimate>
+
                </div>
            </div>
        </div>
+      
+       
     )
 }
 export default Services;

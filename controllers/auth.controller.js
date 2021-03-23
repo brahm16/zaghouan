@@ -244,7 +244,7 @@ exports.forgotPasswordController = (req, res) => {
         );
 
         const emailData = {
-          from: process.env.EMAIL_FROM,
+          from: "brahim.hmida1@esprit.tn",
           to: email,
           subject: `Password Reset link`,
           html: `
@@ -255,6 +255,20 @@ exports.forgotPasswordController = (req, res) => {
                     <p>${process.env.CLIENT_URL}</p>
                 `
         };
+        sgMail
+                .send(emailData)
+                .then(sent => {
+                  // console.log('SIGNUP EMAIL SENT', sent)
+                  return res.json({
+                    message: `Email has been sent to brahimhm470@gmail.com. Follow the instruction to activate your account`
+                  });
+                })
+                .catch(err => {
+                  // console.log('SIGNUP EMAIL SENT ERROR', err)
+                  return res.json({
+                    message: err.message
+                  });
+                });
 
         return user.updateOne(
           {

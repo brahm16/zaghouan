@@ -1,7 +1,89 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect,Component } from 'react';
+import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
+import { updateUser, isAuth, getCookie, signout } from '../../helpers/auth';
+import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
+import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUp from "@material-ui/icons/ArrowDropUp";
+const Main = styled("div")`
+  font-family: sans-serif;
+  height: 2rem;
+`;
 
-export default class HeaderAdmins extends Component {
-    render() {
+const DropDownContainer = styled("div")`
+  width: 10.5em;
+  margin: 0 auto;
+`;
+
+const DropDownHeader = styled("div")`
+  margin-bottom: 0.8em;
+  padding: 0.4em 2em 0.4em 1em;
+  color: white;
+`;
+
+const DropDownListContainer = styled("div")``;
+
+const DropDownList = styled("ul")`
+  padding: 0;
+  margin: 0;
+  padding-left: 1em;
+  background: #ffffff;
+  box-sizing: border-box;
+  color: #3faffa;
+  &:first-child {
+    padding-top: 0.8em;
+  }
+`;
+
+const ListItem = styled("li")`
+  list-style: none;
+  margin-bottom: 0.8em;
+`;
+
+const HeaderAdmins=({history})=>{
+    const [isOpen, setIsOpen] = useState(false);
+    const toggling = () => setIsOpen(!isOpen);
+    
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        role:''
+      });
+      const loadUser = () => {
+  
+        const token = getCookie('token');
+        if(token){
+          axios
+          .get(`${process.env.REACT_APP_API_URL}/user/${isAuth()._id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          .then(res => {
+            const { role, name, email } = res.data;
+            setFormData({ ...formData, role, name, email });
+          })
+          .catch(err => {
+            toast.error(`Error To Your Information ${err.response.statusText}`);
+            if (err.response.status === 401) {
+              signout(() => {
+                history.push('/login');
+              });
+            }
+          });
+  
+        }
+        
+       
+      }; 
+      useEffect(() => {
+        loadUser();
+      }, []);
+      const { name, email,  role } = formData;
+      let his = useHistory();
+
         return (
             <nav class="bg-gray-800 pt-2 md:pt-1 pb-1  mt-0 h-auto fixed  w-full	 z-20 top-0">
 
@@ -10,33 +92,35 @@ export default class HeaderAdmins extends Component {
                 
     
                 <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
-                    <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
-                      {/**
-                       *  <li class="flex-1 md:flex-none md:my-1">
-                            <a class="inline-block py-2 px-1 mx-12 text-white no-underline" href="#">HawasBia</a>
-                        </li>
-                        <li class=" flex-1 md:flex-none md:mr-1">
-                            <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-1" href="#">link</a>
-                        </li>
-                       */} 
-                        <li class="flex-1 md:flex-none md:my-1">
-                            <div class="relative inline-block">
-                                <button onclick="toggleDD('myDropdown')" class="drop-button text-white focus:outline-none"> <span class="pr-2"><i class="em em-robot_face"></i></span> Hi, User <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg></button>
-                                <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
-                                    <input type="text" class="drop-search p-2 text-gray-600" placeholder="Search.." id="myInput" onkeyup="filterDD('myDropdown','myInput')" /> 
-                                    <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Profile</a>
-                                    <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-cog fa-fw"></i> Settings</a>
-                                    <div class="border border-gray-800"></div>
-                                    <a href="#" class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                {
+                      name ? (
+                        <Main >
+                        <DropDownContainer>
+                          <DropDownHeader onClick={toggling}> Hi {name}        {isOpen? (<ArrowDropUp style={{color:"white"}} fontSize="small" />): (<ArrowDropDown style={{color:"white"}} fontSize="small" />) }</DropDownHeader>
+                          {isOpen && (
+                            <DropDownListContainer>
+                              <DropDownList>
+                              {role==='subscriber'? (<ListItem><a>Orders</a></ListItem>):(<ListItem></ListItem>)}
+                                <ListItem><NavLink to={`${role}/me`} >Profile</NavLink></ListItem>
+                                <ListItem><a onClick={() => {
+                    signout(() => {
+                      toast.error('Signout Successfully');
+                      his.push("/login")
+                    });
+                  }} >Logout</a></ListItem>
+                              </DropDownList>
+                            </DropDownListContainer>
+                          )}
+                        </DropDownContainer>
+                      </Main>
+                      
+                       ): (<NavLink to="/login">  <span>Login</span></NavLink>) 
+                    }
                 </div>
             </div>
     
         </nav>
         )
-    }
+    
 }
+export default (HeaderAdmins);

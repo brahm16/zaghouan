@@ -1,16 +1,88 @@
 import React, { Component } from "react";
+import { Line } from "react-chartjs-2";
+
 
 export default class MainDashboard extends Component {
+  
   render() {
+    const data = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [
+        {
+          label: "2020",
+          data: [33, 53, 85, 41, 44, 65],
+          fill: true,
+          backgroundColor: "rgba(75,192,192,0.2)",
+          borderColor: "rgba(75,192,192,1)"
+        },
+        {
+          label: "2019",
+          data: [33, 25, 35, 51, 54, 76],
+          fill: false,
+          borderColor: "#742774"
+        }
+      ]
+    }
     return (
       <div class="main-content bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5 m-36">
         <div class="bg-gray-800 pt-3">
           <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-            <h3 class="font-bold pl-2">Analytics</h3>
+            <h3 class="font-bold pl-2">Dashboard</h3>
           </div>
         </div>
 
         <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+            <div class="bg-white border-transparent rounded-lg shadow-xl">
+              <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                <h5 class="font-bold uppercase text-gray-600">Employee</h5>
+              </div>
+              <div class="p-5">
+                <table class="w-full p-5 text-gray-700">
+                  <thead>
+                    <tr>
+                      <th class="text-left text-blue-900">Name</th>
+                      <th class="text-left text-blue-900">Side</th>
+                      <th class="text-left text-blue-900">Role</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Obi Wan Kenobi</td>
+                      <td>Light</td>
+                      <td>Jedi</td>
+                    </tr>
+                    <tr>
+                      <td>Greedo</td>
+                      <td>South</td>
+                      <td>Scumbag</td>
+                    </tr>
+                    <tr>
+                      <td>Darth Vader</td>
+                      <td>Dark</td>
+                      <td>Sith</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <p class="py-2">
+                  <a href="#">See More issues...</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/2 xl:w-1/3 p-6">
+            <div class="bg-white border-transparent rounded-lg shadow-xl">
+              <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                <h5 class="font-bold uppercase text-gray-600">Number of sell products</h5>
+              </div>
+              <div class="p-5 text-center">
+               <Line data={data} />
+              </div>
+            </div>
+          </div>
           <div class="w-full md:w-1/2 xl:w-1/3 p-6">
             <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
               <div class="flex flex-row items-center">
@@ -64,7 +136,7 @@ export default class MainDashboard extends Component {
                 <div class="flex-1 text-right md:text-center">
                   <h5 class="font-bold uppercase text-gray-600">New Users</h5>
                   <h3 class="font-bold text-3xl">
-                    2{" "}
+                    {" "}
                     <span class="text-yellow-600">
                       <i class="fas fa-caret-up"></i>
                     </span>
@@ -99,8 +171,8 @@ export default class MainDashboard extends Component {
                   </div>
                 </div>
                 <div class="flex-1 text-right md:text-center">
-                  <h5 class="font-bold uppercase text-gray-600">To Do List</h5>
-                  <h3 class="font-bold text-3xl">7 tasks</h3>
+                  <h5 class="font-bold uppercase text-gray-600">Issue solving</h5>
+                  <h3 class="font-bold text-3xl">2</h3>
                 </div>
               </div>
             </div>
@@ -264,62 +336,7 @@ export default class MainDashboard extends Component {
 
  */}
 
-          <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-            <div class="bg-white border-transparent rounded-lg shadow-xl">
-              <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-              </div>
-              <div class="p-5">
-                <table class="w-full p-5 text-gray-700">
-                  <thead>
-                    <tr>
-                      <th class="text-left text-blue-900">Name</th>
-                      <th class="text-left text-blue-900">Side</th>
-                      <th class="text-left text-blue-900">Role</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>Obi Wan Kenobi</td>
-                      <td>Light</td>
-                      <td>Jedi</td>
-                    </tr>
-                    <tr>
-                      <td>Greedo</td>
-                      <td>South</td>
-                      <td>Scumbag</td>
-                    </tr>
-                    <tr>
-                      <td>Darth Vader</td>
-                      <td>Dark</td>
-                      <td>Sith</td>
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p class="py-2">
-                  <a href="#">See More issues...</a>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-            <div class="bg-white border-transparent rounded-lg shadow-xl">
-              <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                <h5 class="font-bold uppercase text-gray-600">Advert</h5>
-              </div>
-              <div class="p-5 text-center">
-                <script
-                  async
-                  type="text/javascript"
-                  src="//cdn.carbonads.com/carbon.js?serve=CK7D52JJ&placement=wwwtailwindtoolboxcom"
-                  id="_carbonads_js"
-                ></script>
-              </div>
-            </div>
-          </div>
+ 
         </div>
       </div>
     );

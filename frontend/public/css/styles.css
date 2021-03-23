@@ -663,7 +663,7 @@ body {
 .slide__text {
   width: 100%;
   position: absolute;
-  left: 0;
+  left:0;
   bottom: 300px;
   z-index: 3;
 }
@@ -2274,6 +2274,9 @@ body {
     bottom: 0;
     left: 0;
   }
+  .slide__text{
+    left:0;
+  }
 }
 @media screen and (max-width: 2000px) {
   .slide__text-heading {
@@ -2291,7 +2294,7 @@ body {
     bottom: 260px;
   }
   .homepage_slider .most_popular {
-    bottom: 260px;
+    bottom: 280px;
   }
   .slide__text-desc {
     font-size: 18px;

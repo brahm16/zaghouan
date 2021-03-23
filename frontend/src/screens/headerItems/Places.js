@@ -3,6 +3,7 @@ import { PLACES } from "../../shared/places";
 import { Link } from "react-router-dom";
 import Header from "../Item/Header";
 
+
 class Places extends Component {
   constructor(props) {
     super(props);

@@ -7,7 +7,7 @@ class MainLanding extends Component {
     const { t } = this.props;
 
     const style = {
-      backgroundImage: "url('img/zagh/IMG8.jpg')",
+      backgroundImage: "url('img/zagh/zagh1.jpg')",
     };
     return (
       <div className="homepage_slider">
@@ -20,13 +20,22 @@ class MainLanding extends Component {
               <div className="slide__bg image-bg" style={style}></div>
               <div className="slide__content">
                 <div className="slide__text">
-                  <div className="slide__controls" style={{marginLeft:"50rem;"}}>
-                  <a href="single.html">
-                    </a>
-                    <a href="single.html" className="btn">
+                  <h2 class="slide__text-heading ml5">
+                    <span class="text-wrapper">
+                      <span class="line line1"></span>
+                      <span class="letters letters-left">Visit Zaghouan</span>
+                    </span>
+                  </h2>
+                  <div className="slide__controls">
+                    <a href="single.html"></a>
+                    <a
+                      href="single.html"
+                      className="btn"
+                      style={{ marginRight: "1rem" }}
+                    >
                       {t("vbtn")}
                     </a>
-                    <Link to="circuits" className="btn btn__choose_tour">
+                    <Link to="circuits" className="btn">
                       {t("cbtn")}
                     </Link>
                   </div>
@@ -125,7 +134,9 @@ class MainLanding extends Component {
                     </div>
                     <div className="_title">
                       <span>
-                        <NavLink to="main/execursions">{t("excursions")}</NavLink>
+                        <NavLink to="main/execursions">
+                          {t("excursions")}
+                        </NavLink>
                       </span>
                     </div>
                   </a>

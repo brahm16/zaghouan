@@ -94,7 +94,7 @@ const  ProfileAdmin=({history}) => {
         <div className='lg:w-full xl:w-9/12 p-6 sm:p-12'>
           <div className='mt-12 flex flex-col items-center'>
             <h1 className='text-2xl xl:text-3xl font-extrabold'>
-              Admin Update
+             Update
             </h1>
 
             <form

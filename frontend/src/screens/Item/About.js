@@ -1,19 +1,31 @@
+import { MotionAnimate } from 'react-motion-animate'
+import 'react-motion-animate/dist/index.css'
+
 const About=()=>{
-    {/** hedhi nrigueloulha padding te3ha */}
-    return(
-        
-        <div className="page_content single-page about-page" >
+    const style = {
+        backgroundImage: "url('img/zagh/about.jpg')",
+    };    return(
+ 
+        <div className="page_content single-page about-page"   >
         <div className="content-head">
             <div className="wrap">
                 <div className="wrap_float">
                     <div className="main">
                         <div className="section-top">
+                        <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                             <div className="title">
                                 About Us
                             </div>
+                            </MotionAnimate>
                          
                         </div>
-                      
+                        <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
                        <div className="description">
                            <div className="description-title">
                                Amet Etiam Quam
@@ -34,32 +46,40 @@ const About=()=>{
                                </div>
                            </div>
                        </div>
+                       </MotionAnimate>
                     </div>
                 </div>
             </div>
         </div>
+        <MotionAnimate
+                          animation='scrollOpacity'
+                          ease={[0.17, 0.67, 0.97, -0.48]}
+                          scrollPositions={[0.2, 0.5, 0.6, 0.8]}>
         <div className="content-body">
             <div className="wrap">
                 <div className="wrap_float">
                     <div className="statistic" id="statistic">
                         <div className="stat-item">
                             <div className="val spincrement" data-start="50">357</div>
-                            <div className="text">People in the team</div>
+                            <div className="text">Reservation for circuits this year</div>
                         </div>
                         <div className="stat-item" data-start="1150">
                             <div className="val spincrement">34354</div>
-                            <div className="text">Travel this year</div>
+                            <div className="text">People visit zaghouan</div>
                         </div>
                         <div className="stat-item">
-                            <div className="val spincrement" data-start="850">1998</div>
-                            <div className="text">We have been working since 1998</div>
+                            <div className="val spincrement" data-start="850">2021</div>
+                            <div className="text">We have been working since 2021</div>
                         </div>
                     </div>
                    
                 </div>
             </div>
         </div>
+        </MotionAnimate>
+
     </div>
+  
     
     )
    
