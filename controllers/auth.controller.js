@@ -172,7 +172,7 @@ exports.signinController = (req, res) => {
           expiresIn: '7d'
         }
       );
-      const { _id, name, email, role } = user;
+      const { _id, name, email,bio, role } = user;
 
       return res.json({
         token,
@@ -180,6 +180,7 @@ exports.signinController = (req, res) => {
           _id,
           name,
           email,
+          bio,
           role
         }
       });
@@ -377,10 +378,10 @@ exports.googleController = (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
               expiresIn: '7d'
             });
-            const { _id, email, name, role } = user;
+            const { _id, email, name, role,bio } = user;
             return res.json({
               token,
-              user: { _id, email, name, role }
+              user: { _id, email, name, role,bio }
             });
           } else {
             let password = email + process.env.JWT_SECRET;
@@ -397,10 +398,10 @@ exports.googleController = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: '7d' }
               );
-              const { _id, email, name, role } = data;
+              const { _id, email, name, role,bio } = data;
               return res.json({
                 token,
-                user: { _id, email, name, role }
+                user: { _id, email, name, role,bio }
               });
             });
           }

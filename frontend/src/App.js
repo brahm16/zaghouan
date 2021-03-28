@@ -4,6 +4,7 @@ import { signout } from './helpers/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import Header from "./screens/Item/Header"
 import Landing from './screens/Item/Landing';
+import  "./App.css";
 
 
 function App({ history }) {

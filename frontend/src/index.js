@@ -40,39 +40,50 @@ import Gastro from './screens/mainItems/Gastro';
 import Excursions from './screens/mainItems/Excursions';
 import Store from './screens/mainItems/Store';
 import Services from './screens/headerItems/Services';
+import Dashboard from './screens/Dashboard/Dashboard';
+import Sidebar from './screens/Dashboard/Main/Sidebar';
+import Navbar from './screens/Dashboard/Main/Navbar';
+import MainAdmin from './screens/Dashboard/Admin/MainAdmin';
+import MainOwner from './screens/Dashboard/Owner/MainOwner';
+import MainUser from './screens/Dashboard/User/MainUser';
+import Join from './screens/Discussion/Join/Join';
+import Chat from './screens/Discussion/Chat/Chat';
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
 const DashAdmin = ({match}) => {
   return(
-  <div className="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
-   <HeaderAdmins />
-   <div className="flex flex-col md:flex-row">
-    <SidebarAdmins menu={MENU_ADMIN} />
+    <>
+    <Sidebar menu={MENU_ADMIN} />
+    <div className="relative md:ml-64 ">
+      <Navbar />
 
     <Switch>
-        <Route path={match.path} exact={true} component={DashboardAdmin} />
+        <Route path={match.path} exact={true} component={MainAdmin} />
 
        <Route path={`${match.path}/me`} exact={true} component={ProfileAdmin} />
  
     </Switch>
     </div>
-    </div>
+    </>
+  
 
   );
 };
 const DashOwner = ({match}) => {
   return(
-    <div className="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
-   <HeaderAdmins />
-   <div className="flex flex-col md:flex-row">
-   <SidebarAdmins menu={MENU_OWNER} />
+    <>
+    <Sidebar menu={MENU_OWNER} />
+    <div className="relative md:ml-64 ">
+      <Navbar />
 
     <Switch>
-        <Route path={match.path} exact={true} component={OwnerDashboard} />
+        <Route path={match.path} exact={true} component={MainOwner} />
 
        <Route path={`${match.path}/me`} exact={true} component={ProfileOwner} />
  
     </Switch>
     </div>
-    </div>
+    </>
 
   );
 };
@@ -101,29 +112,31 @@ const Items= ({match}) => {
 const DashUser = ({match}) => {
   return(
     
-    <div className="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
-    <HeaderAdmins />
-    <div className="flex flex-col md:flex-row">
-    <SidebarAdmins menu={MENU_USER} />
+    <>
+    <Sidebar menu={MENU_USER} />
+    <div className="relative md:ml-64 ">
+      <Navbar />
 
     <Switch>
-        <Route path={match.path} exact={true} component={DashboardUser} />
+        <Route path={match.path} exact={true} component={MainUser} />
 
        <Route path={`${match.path}/me`} exact={true} component={ProfileUser} />
  
     </Switch>
     </div>
-    </div>
+    </>
    
   );
 };
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
+      <Route path="/join" component={Join} />
+      <Route path="/chat" component={Chat} />
       <Route path='/' exact render={props => <App {...props} />} />
       <Route path='/login' exact render={props => <Login {...props} />} />
       <Route path='/services' exact render={props => <Services {...props} />} />
-
+      <Route path="/mydash" component={Dashboard}   />
       <Route path='/register' exact render={props => <Register {...props} />} />
       <Route path='/users/password/forget' exact render={props => <ForgetPassword {...props} />} />
       <Route path='/users/home' exact render={props => <HomeUser {...props}  />} />

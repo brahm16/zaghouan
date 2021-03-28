@@ -15,6 +15,10 @@ const userScheama = new mongoose.Schema(
       trim: true,
       required: true
     },
+    bio: {
+      type: String,
+      default:""
+    },
     hashed_password: {
       type: String,
       required: true
@@ -23,6 +27,10 @@ const userScheama = new mongoose.Schema(
     role: {
       type: String,
       default: 'subscriber'
+    },
+    pic:{
+      type:String,
+      default: "./uploads/profil/random-user.png"
     },
     resetPasswordLink: {
       data: String,

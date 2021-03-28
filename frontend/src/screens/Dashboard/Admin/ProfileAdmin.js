@@ -1,16 +1,19 @@
 import React, { useState,useEffect } from 'react'
-
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { updateUser, isAuth, getCookie, signout } from '../../../helpers/auth';
+import UploadImg from '../Main/UploadImg';
 const  ProfileAdmin=({history}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    bio:'',
+    pic:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
     password1: '',
     textChange: 'Update',
     role: ''
   });
+  let pics=formData.pic;
 
   useEffect(() => {
     loadProfile();
@@ -25,8 +28,10 @@ const  ProfileAdmin=({history}) => {
         }
       })
       .then(res => {
-        const { role, name, email } = res.data;
-        setFormData({ ...formData, role, name, email });
+        const { role, name, email,bio } = res.data;
+       
+        setFormData({ ...formData, role, name, email,bio });
+        console.log("bio"+formData.bio);
       })
       .catch(err => {
         toast.error(`Error To Your Information ${err.response.statusText}`);
@@ -37,7 +42,7 @@ const  ProfileAdmin=({history}) => {
         }
       });
   };
-  const { name, email, password1, textChange, role } = formData;
+  const { name, email,bio ,pic,password1, textChange, role } = formData;
   const handleChange = text => e => {
     setFormData({ ...formData, [text]: e.target.value });
   };
@@ -52,6 +57,8 @@ const  ProfileAdmin=({history}) => {
         {
           name,
           email,
+          bio,
+          pics,
           password: password1
         },
         {
@@ -70,25 +77,80 @@ const  ProfileAdmin=({history}) => {
         console.log(err.response);
       });
   };
+  {/**
+  
+   const imageHandler = (e) => {
+    const reader = new FileReader();
+    reader.onload = () =>{
+      if(reader.readyState === 2){
+        pics=reader.result;
+      }
+    }
+    console.log(e.target.files[0].name);
+    const formData1 = new FormData();
+    const dest= "./upload/profil/"+e.target.files[0]
+
+    formData1.append('file',e.target.files[0]);
+      const config = {
+          headers: {
+              'content-type': 'multipart/form-data'
+          }
+      };
+      const token = getCookie('token');
+
+      axios.post(`${process.env.REACT_APP_API_URL}/upload`,formData1,config)
+          .then((response) => {
+              alert("The file is successfully uploaded");
+          }).catch((error) => {
+              alert(error);
+      });
+      axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/admin/update`,
+        {
+          name,
+          email,
+          bio,
+          pic:"./upload/profil/"+e.target.files[0],
+          password: password1
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      .then(res => {
+        updateUser(res, () => {
+          toast.success('Profile Updated Successfully');
+          setFormData({ ...formData, textChange: 'Update' }); 
+        });
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
+ 
+    reader.readAsDataURL(e.target.files[0])
+  };
+  
+  */}
+ 
+
  
    
       return (
+        <div className=" bg-gray-300 lg:w-9/10">
+        <div className="relative bg-gray-300	 md:pt-32 pb-32 pt-12">
+        <div className="px-4 md:px-10 mx-auto w-full">
       
            
 
 
 
         
-          <div class="main-content bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5 m-36 mt-12">
-            <div class="bg-gray-800 pt-3">
-              <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-                <h3 class="font-bold pl-2">Profile</h3>
-              </div>
-            </div>
+    
     
             
-              <div class="flex flex-row items-center">
-              <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
       <ToastContainer />
       <div className='max-w-screen-xl m-0 sm:m-20 bg-white mt-12  shadow sm:rounded-lg '>
         <div className='lg:w-full xl:w-9/12 p-6 sm:p-12'>
@@ -96,6 +158,25 @@ const  ProfileAdmin=({history}) => {
             <h1 className='text-2xl xl:text-3xl font-extrabold'>
              Update
             </h1>
+                    <UploadImg /> 
+            {
+              /**
+               *    <div className="mycontainer">
+                      <h1 className="myheading">Add your Image</h1>
+                      <div className="myimg-holder">
+                          <img src={pics} alt="" id="img" className="img" />
+                      </div>
+                      <input type="file" accept="image/*"  name="image-upload" id="input" onChange={imageHandler} />
+                      <div className="mylabel">
+            <label className="myimage-upload" htmlFor="input">
+                          Choose your Photo
+                      </label>
+            </div>
+                  </div>
+               * 
+               */
+            }
+      
 
             <form
               className='w-full flex-1 mt-8 text-indigo-500'
@@ -122,6 +203,13 @@ const  ProfileAdmin=({history}) => {
                   placeholder='Name'
                   onChange={handleChange('name')}
                   value={name}
+                />
+                <input
+                  className='w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5'
+                  type='text'
+                  placeholder='Biographie'
+                  onChange={handleChange('bio')}
+                  value={bio}
                 />
 
                 <input
@@ -151,7 +239,7 @@ const  ProfileAdmin=({history}) => {
                   href='/'
                   target='_self'
                 >
-                  <i className='fas fa-sign-in-alt fa 1x w-6  -ml-2 text-indigo-500' />
+                  <i className='fas fa-home fa 1x w-6  -ml-2 text-indigo-500' />
                   <span className='ml-4'>Home</span>
                 </a>
               </div>
@@ -165,153 +253,15 @@ const  ProfileAdmin=({history}) => {
               </div>
             
           </div>
+          </div>
+          </div>
             
              
               
            
-            </div>
+           
     
-            <div class="flex flex-row flex-wrap flex-grow mt-2">
-              {/**
-     * 
-     * 
-                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                        <div class="bg-white border-transparent rounded-lg shadow-xl">
-                            <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                            </div>
-                            <div class="p-5">
-                                <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
-                                {
-                                    new Chart(document.getElementById("chartjs-7"), {
-                                        "type": "bar",
-                                        "data": {
-                                            "labels": ["January", "February", "March", "April"],
-                                            "datasets": [{
-                                                "label": "Page Impressions",
-                                                "data": [10, 20, 30, 40],
-                                                "borderColor": "rgb(255, 99, 132)",
-                                                "backgroundColor": "rgba(255, 99, 132, 0.2)"
-                                            }, {
-                                                "label": "Adsense Clicks",
-                                                "data": [5, 15, 10, 30],
-                                                "type": "line",
-                                                "fill": false,
-                                                "borderColor": "rgb(54, 162, 235)"
-                                            }]
-                                        },
-                                        "options": {
-                                            "scales": {
-                                                "yAxes": [{
-                                                    "ticks": {
-                                                        "beginAtZero": true
-                                                    }
-                                                }]
-                                            }
-                                        }
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </div>
-     *   <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                        <div class="bg-white border-transparent rounded-lg shadow-xl">
-                            <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                            </div>
-                            <div class="p-5">
-                                <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
-                                  {
-                                       new Chart(document.getElementById("chartjs-0"), {
-                                        "type": "line",
-                                        "data": {
-                                            "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                            "datasets": [{
-                                                "label": "Views",
-                                                "data": [65, 59, 80, 81, 56, 55, 40],
-                                                "fill": false,
-                                                "borderColor": "rgb(75, 192, 192)",
-                                                "lineTension": 0.1
-                                            }]
-                                        },
-                                        "options": {}
-                                    })
-    
-                                  } 
-                            </div>
-                        </div>
-                    </div>
-     * 
-     *  <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                        <div class="bg-white border-transparent rounded-lg shadow-xl">
-                            <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                            </div>
-                            <div class="p-5">
-                                <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
-                                {
-                                     new Chart(document.getElementById("chartjs-1"), {
-                                        "type": "bar",
-                                        "data": {
-                                            "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                                            "datasets": [{
-                                                "label": "Likes",
-                                                "data": [65, 59, 80, 81, 56, 55, 40],
-                                                "fill": false,
-                                                "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                                                "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
-                                                "borderWidth": 1
-                                            }]
-                                        },
-                                        "options": {
-                                            "scales": {
-                                                "yAxes": [{
-                                                    "ticks": {
-                                                        "beginAtZero": true
-                                                    }
-                                                }]
-                                            }
-                                        }
-                                    })
-    
-                                }
-                                   
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                        <div class="bg-white border-transparent rounded-lg shadow-xl">
-                            <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold uppercase text-gray-600">Graph</h5>
-                            </div>
-                            <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined" height="undefined"></canvas>
-                                {
-                                    new Chart(document.getElementById("chartjs-4"), {
-                                        "type": "doughnut",
-                                        "data": {
-                                            "labels": ["P1", "P2", "P3"],
-                                            "datasets": [{
-                                                "label": "Issues",
-                                                "data": [300, 50, 100],
-                                                "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
-                                            }]
-                                        }
-                                    })
-    
-                                }
-                                    
-                                
-                            </div>
-                        </div>
-                    </div>
-    
-     */}
-    
-              
-              
-            </div>
-          </div>
+            
            
     )
     
